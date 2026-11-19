@@ -42,7 +42,7 @@ export function untilText(iso) {
   if (isNaN(d)) return "";
   if (ahead < 60000) return t("nu");
   if (ahead < 3600000) return t("over {t}", { t: t("{m} min", { m: Math.round(ahead / 60000) }) });
-  const hm = d.toLocaleTimeString(locale(), timeOpts());
+  const hm = d.toLocaleTimeString(locale(), { hour: "2-digit", minute: "2-digit" });
   const days = Math.round((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - new Date(now.getFullYear(), now.getMonth(), now.getDate())) / DAY);
   if (days === 0) return hm;
   if (days === 1) return `${t("morgen")} ${hm}`;
